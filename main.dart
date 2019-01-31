@@ -18,6 +18,7 @@
 // Strings - "Hello!" (single and double quotes)
 // Booleans - true or false
 // Lists - collections of items (like arrays) List<int> 0 indexed
+// Maps - Collections with associated Key Value Pairs Map<String, int>
 // runes - unicode character points
 // symbols - #symbol (simbolic metadata)
 
