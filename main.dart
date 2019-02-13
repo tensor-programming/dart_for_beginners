@@ -1,131 +1,113 @@
-// void main() {
-//   print("Hello, World");
-// }
+void main() {
+  var c = Complex(5, 2);
+
+  var c2 = Complex(2, 5);
+  var r = Complex.real(10);
+  var i = Complex.imaginary(-4);
+
+  i.imaginary = 20;
+  i.real = 50;
+
+  print(i.real);
+  print(i.imaginary);
+
+  print(c == c2);
+  print(c2);
+  print(c);
+  print(r);
+  print(i);
+}
+
+class Complex {
+  num _real;
+  num _imaginary;
+
+  get real => _real;
+  set real(num value) => _real = value;
+
+  get imaginary => _imaginary;
+  set imaginary(num value) => _imaginary = value;
+  // num getReal() {
+  //   return _real;
+  // }
+  // void setReal(num real) {
+  //   this._real = real;
+  // }
+  // num getImaginary() {
+  //   return _imaginary;
+  // }
+  // void setImaginary(num imaginary) {
+  //   this._imaginary = imaginary;
+  // }
+
+  Complex(this._real, this._imaginary);
+
+  Complex.real(num real) : this(real, 0);
+
+  Complex.imaginary(num imaginary) : this(0, imaginary);
+
+  @override
+  bool operator ==(other) {
+    if (!(other is Complex)) {
+      return false;
+    }
+    return this._real == other._real && this._imaginary == other._imaginary;
+  }
+
+  @override
+  String toString() {
+    if (this._imaginary >= 0) {
+      return '${this._real} + ${this._imaginary}i';
+    }
+    return '${this._real} - ${this._imaginary.abs()}i';
+  }
+}
+
+// num is a parent of int and double
+// Object is the parent for all Objects in dart
 
 // void main() {
-//   print("Hi");
-//   print("From Dart!");
+//   var c = Complex();
+//   c.imaginary = 2;
+//   c.real = 5;
+
+//   var c2 = Complex()
+//     ..imaginary = 2
+//     ..real = 5;
+
+// var x = Complex();
+// error
+// print(x);
+
+//   print(c == c2);
+
+//   print(c2);
+
+//   print(c);
 // }
 
-// void main() {
-//   var x = -10;
+// Complex Numbers
+// i^2 = -1
+// 5 + 2i
+// 10 + 0i
+// 0 - 4i
+// class Complex {
+//   num real;
+//   num imaginary;
 
-//   print(x.abs());
-// }
-
-// void main() {
-// Numbers - (int, double) num
-// Strings - "Hello!" (single and double quotes)
-// Booleans - true or false
-// Lists - collections of items (like arrays) List<int> 0 indexed
-// Maps - Collections with associated Key Value Pairs Map<String, int>
-// runes - unicode character points
-// symbols - #symbol (simbolic metadata)
-
-//   int x = 10;
-//   double y = 10.0;
-
-//   String s = "${x + y}";
-//   print(s);
-//   bool b = true;
-//   print(b);
-//   List l = [1, 2, 3];
-//   print(l[0]);
-//   List<String> ls = ["1", "2", "3"];
-//   print(ls[1]);
-
-//   Map<String, int> map = {
-//     'A': 10,
-//     'B': 20,
-//     'C': 30,
-//   };
-
-//   print(map["A"]);
-// }
-
-// int add(int a, int b) {
-//   return a + b;
-// }
-// Type based function
-// add(a, b) {
-//   return a + b;
-// }
-// No types
-
-// void main() {
-//   print(add(1, 2));
-//   print(add(20.0, 40.0));
-//   print(add("a", "b"));
-//   print(add(true, false));
-// }
-
-// int add(int a, int b) {
-//   return a + b;
-// }
-
-// Function fun;
-
-// void main() {
-//   fun = add;
-
-//   var result = fun(20, 30);
-
-//   print("Result is $result");
-// }
-
-// int add(int a, int b) {
-//   return a + b;
-// }
-
-// exec(Function op, x, y) {
-//   return op(x, y);
-// }
-
-// void main() {
-//   var result = exec(add, 20, 30);
-//   print("Result is $result");
-// }
-
-// int add(int x, int y) => x + y;
-// int sub(int x, int y) => x + y;
-
-// choose(bool op) {
-//   if (op == true) {
-//     return add;
-//   } else {
-//     return sub;
+//   @override
+//   bool operator ==(other) {
+//     if (!(other is Complex)) {
+//       return false;
+//     }
+//     return this.real == other.real && this.imaginary == other.imaginary;
 //   }
-// }
 
-// void main() {
-//   var result = choose(true)(10, 20);
-//   print("Result is $result");
-// }
-
-// int add(int x, int y) => x + y;
-// int sub(int x, int y) => x + y;
-
-// List<Function> operators = [add, sub];
-
-// void main() {
-//   var result = operators[1](10, 20);
-//   print("Result is $result");
-// }
-
-// calc(int b) {
-//   int c = 1;
-
-//   return () => print("The value is ${b + c++}");
-// }
-
-// void main() {
-//   (a, b) {
-//     print("Hello, from closure: ${a + b}");
-//   }(20, 30.0);
-
-//   var f = calc(10);
-//   f();
-//   calc(10)();
-//   f();
-//   f();
+//   @override
+//   String toString() {
+//     if (imaginary >= 0) {
+//       return '${real} + ${imaginary}i';
+//     }
+//     return '${real} - ${imaginary.abs()}i';
+//   }
 // }
