@@ -1,131 +1,105 @@
-// void main() {
-//   print("Hello, World");
-// }
+void main() {
+  // const x = 10;
+  var n1 = Complex(3, -2);
+  var n2 = Complex(1, 4);
+  var q = Quaternion(1, -2, 3);
+  print(n1 + n2);
+  print(n1.multiply(n2));
+  print(Complex.subtract(n1, q));
+  print(q + n2);
+}
 
-// void main() {
-//   print("Hi");
-//   print("From Dart!");
-// }
+// u + vi
+// 3 - 2i
+// i^2 = -1
 
-// void main() {
-//   var x = -10;
+// (3 - 2i) * (1 + 4i) = 3 + -2i + 12i + 8 = 11 + 10i
 
-//   print(x.abs());
-// }
+class Complex {
+  num _real;
+  num _imaginary;
 
-// void main() {
-// Numbers - (int, double) num
-// Strings - "Hello!" (single and double quotes)
-// Booleans - true or false
-// Lists - collections of items (like arrays) List<int> 0 indexed
-// Maps - Collections with associated Key Value Pairs Map<String, int>
-// runes - unicode character points
-// symbols - #symbol (simbolic metadata)
+  // static const x = 10;
+  // static num counter = 0;
 
-//   int x = 10;
-//   double y = 10.0;
+  get real => _real;
+  set real(num value) => _real = value;
 
-//   String s = "${x + y}";
-//   print(s);
-//   bool b = true;
-//   print(b);
-//   List l = [1, 2, 3];
-//   print(l[0]);
-//   List<String> ls = ["1", "2", "3"];
-//   print(ls[1]);
+  get imaginary => _imaginary;
+  set imaginary(num value) => _imaginary = value;
 
-//   Map<String, int> map = {
-//     'A': 10,
-//     'B': 20,
-//     'C': 30,
-//   };
+  Complex(this._real, this._imaginary);
 
-//   print(map["A"]);
-// }
+  Complex.real(num real) : this(real, 0);
 
-// int add(int a, int b) {
-//   return a + b;
-// }
-// Type based function
-// add(a, b) {
-//   return a + b;
-// }
-// No types
+  Complex.imaginary(num imaginary) : this(0, imaginary);
 
-// void main() {
-//   print(add(1, 2));
-//   print(add(20.0, 40.0));
-//   print(add("a", "b"));
-//   print(add(true, false));
-// }
+  Complex operator +(Complex c) {
+    return Complex(
+      this.real + c.real,
+      this.imaginary + c.imaginary,
+    );
+  }
 
-// int add(int a, int b) {
-//   return a + b;
-// }
+// (3 - 2i) * (1 + 4i) = 3 + -2i + 12i + 8 = 11 + 10i
+  Complex multiply(Complex c) {
+    var first = this.real * c.real;
+    var inner = this.imaginary * c.real;
+    var outer = this.real * c.imaginary;
+    var last = -(this.imaginary * c.imaginary);
 
-// Function fun;
+    return Complex(first + last, inner + outer);
+  }
 
-// void main() {
-//   fun = add;
+  static Complex subtract(Complex c1, Complex c2) {
+    return Complex(
+      c1.real - c2.real,
+      c1.imaginary - c2.imaginary,
+    );
+  }
 
-//   var result = fun(20, 30);
+  @override
+  bool operator ==(other) {
+    if (!(other is Complex)) {
+      return false;
+    }
+    return this._real == other._real && this._imaginary == other._imaginary;
+  }
 
-//   print("Result is $result");
-// }
+  @override
+  String toString() {
+    if (this._imaginary >= 0) {
+      return '${this._real} + ${this._imaginary}i';
+    }
+    return '${this._real} - ${this._imaginary.abs()}i';
+  }
+}
 
-// int add(int a, int b) {
-//   return a + b;
-// }
+// Quaternion
+// u + vi + xj
 
-// exec(Function op, x, y) {
-//   return op(x, y);
-// }
+// i = j = sqrt(-1)
 
-// void main() {
-//   var result = exec(add, 20, 30);
-//   print("Result is $result");
-// }
+class Quaternion extends Complex {
+  num jImage;
 
-// int add(int x, int y) => x + y;
-// int sub(int x, int y) => x + y;
+  Quaternion(
+    num real,
+    num imaginary,
+    this.jImage,
+  ) : super(
+          real,
+          imaginary,
+        );
 
-// choose(bool op) {
-//   if (op == true) {
-//     return add;
-//   } else {
-//     return sub;
-//   }
-// }
-
-// void main() {
-//   var result = choose(true)(10, 20);
-//   print("Result is $result");
-// }
-
-// int add(int x, int y) => x + y;
-// int sub(int x, int y) => x + y;
-
-// List<Function> operators = [add, sub];
-
-// void main() {
-//   var result = operators[1](10, 20);
-//   print("Result is $result");
-// }
-
-// calc(int b) {
-//   int c = 1;
-
-//   return () => print("The value is ${b + c++}");
-// }
-
-// void main() {
-//   (a, b) {
-//     print("Hello, from closure: ${a + b}");
-//   }(20, 30.0);
-
-//   var f = calc(10);
-//   f();
-//   calc(10)();
-//   f();
-//   f();
-// }
+  @override
+  String toString() {
+    if (this.jImage >= 0 && this._imaginary >= 0) {
+      return '${this._real} + ${this.imaginary}i + ${this.jImage}j';
+    }
+    if (this.jImage >= 0 && this._imaginary < 0) {
+      return '${this._real} - ${this.imaginary.abs()}i + ${this.jImage}j';
+    }
+    return '${this._real} - ${this.imaginary.abs()}i - ${this.jImage.abs()}j';
+  }
+}
