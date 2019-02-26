@@ -1,131 +1,146 @@
-// void main() {
-//   print("Hello, World");
-// }
+void main() {
+  A c = C("C");
+  c.hello();
+  (c as B).goodbye();
+  (c as C).hi();
+  (c as C).printStamp();
+}
+
+class TimeStamp {
+  DateTime time = DateTime.now();
+  void printStamp() {
+    print(time);
+  }
+}
+
+class A {
+  void hello() {
+    print("Hello from A");
+  }
+}
+
+class B {
+  String b;
+
+  B(this.b);
+
+  void hi() {
+    print("Hello from B");
+  }
+
+  void goodbye() {
+    print("Bye bye $b");
+  }
+}
+
+class C with TimeStamp implements A, B {
+  C(this.b);
+
+  @override
+  void hello() {
+    print("Hello from C");
+  }
+
+  @override
+  void hi() {
+    print("Hi from C");
+  }
+
+  @override
+  String b;
+
+  @override
+  void goodbye() {
+    print("Bye bye $b");
+  }
+}
+
+// import 'dart:math';
 
 // void main() {
-//   print("Hi");
-//   print("From Dart!");
-// }
+//   Square square = Square(10.0);
+//   Rectangle rectangle = Rectangle(20.0, 15.0);
+//   Circle circle = Circle(2.0);
 
-// void main() {
-//   var x = -10;
+//   print(square.name);
+//   print(rectangle.name);
+//   print(circle.name);
 
-//   print(x.abs());
-// }
+//   Shape randShape;
 
-// void main() {
-// Numbers - (int, double) num
-// Strings - "Hello!" (single and double quotes)
-// Booleans - true or false
-// Lists - collections of items (like arrays) List<int> 0 indexed
-// Maps - Collections with associated Key Value Pairs Map<String, int>
-// runes - unicode character points
-// symbols - #symbol (simbolic metadata)
+//   Random random = Random();
+//   int choice = random.nextInt(3);
 
-//   int x = 10;
-//   double y = 10.0;
-
-//   String s = "${x + y}";
-//   print(s);
-//   bool b = true;
-//   print(b);
-//   List l = [1, 2, 3];
-//   print(l[0]);
-//   List<String> ls = ["1", "2", "3"];
-//   print(ls[1]);
-
-//   Map<String, int> map = {
-//     'A': 10,
-//     'B': 20,
-//     'C': 30,
-//   };
-
-//   print(map["A"]);
-// }
-
-// int add(int a, int b) {
-//   return a + b;
-// }
-// Type based function
-// add(a, b) {
-//   return a + b;
-// }
-// No types
-
-// void main() {
-//   print(add(1, 2));
-//   print(add(20.0, 40.0));
-//   print(add("a", "b"));
-//   print(add(true, false));
-// }
-
-// int add(int a, int b) {
-//   return a + b;
-// }
-
-// Function fun;
-
-// void main() {
-//   fun = add;
-
-//   var result = fun(20, 30);
-
-//   print("Result is $result");
-// }
-
-// int add(int a, int b) {
-//   return a + b;
-// }
-
-// exec(Function op, x, y) {
-//   return op(x, y);
-// }
-
-// void main() {
-//   var result = exec(add, 20, 30);
-//   print("Result is $result");
-// }
-
-// int add(int x, int y) => x + y;
-// int sub(int x, int y) => x + y;
-
-// choose(bool op) {
-//   if (op == true) {
-//     return add;
-//   } else {
-//     return sub;
+//   switch (choice) {
+//     case 0:
+//       randShape = Circle(
+//         random.nextInt(10) + 1.0,
+//       );
+//       break;
+//     case 1:
+//       randShape = Rectangle(
+//         random.nextInt(10) + 1.0,
+//         random.nextInt(10) + 1.0,
+//       );
+//       break;
+//     case 2:
+//       randShape = Square(
+//         random.nextInt(10) + 1.0,
+//       );
+//       break;
+//     default:
+//       print("will never execute");
 //   }
+
+//   print(randShape.name);
+//   print(randShape.area);
+//   print(randShape.perimeter);
 // }
 
-// void main() {
-//   var result = choose(true)(10, 20);
-//   print("Result is $result");
+// abstract class Shape {
+//   double get perimeter;
+//   double get area;
+//   String get name;
 // }
 
-// int add(int x, int y) => x + y;
-// int sub(int x, int y) => x + y;
+// class Circle extends Shape {
+//   double radius;
 
-// List<Function> operators = [add, sub];
+//   Circle(this.radius);
 
-// void main() {
-//   var result = operators[1](10, 20);
-//   print("Result is $result");
+//   @override
+//   double get area => pi * (radius * radius);
+
+//   @override
+//   String get name => "I am a circle with radius: $radius";
+
+//   @override
+//   double get perimeter => radius * 2 * pi;
 // }
 
-// calc(int b) {
-//   int c = 1;
+// class Rectangle extends Shape {
+//   double length, width;
 
-//   return () => print("The value is ${b + c++}");
+//   Rectangle(this.length, this.width);
+
+//   @override
+//   double get area => length * width;
+
+//   @override
+//   String get name => "I am a rectangle with length: $length and width: $width";
+
+//   @override
+//   double get perimeter => length * 2 + width * 2;
 // }
 
-// void main() {
-//   (a, b) {
-//     print("Hello, from closure: ${a + b}");
-//   }(20, 30.0);
+// class Square extends Rectangle {
+//   Square(
+//     double side,
+//   ) : super(
+//           side,
+//           side,
+//         );
 
-//   var f = calc(10);
-//   f();
-//   calc(10)();
-//   f();
-//   f();
+//   @override
+//   String get name => "I am a square with side of $length";
 // }
