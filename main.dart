@@ -1,131 +1,87 @@
-// void main() {
-//   print("Hello, World");
-// }
+import 'dart:math' as Math;
+
+void main() {
+  var numbers = Iterable.generate(1000, (i) => i);
+
+  print(numbers.reduce(Math.min));
+  print(numbers.reduce(Math.max));
+
+  Map<int, int> map = Map.fromIterable(
+    numbers.take(10),
+  );
+  var newMap = map.map(
+    (int k, int v) => MapEntry(k, k + v),
+  );
+
+  print(newMap[0]);
+  print(newMap[9]);
+
+  // numbers.reduce();
+  // numbers.map();
+  // numbers.where();
+
+  // var sum = 0;
+  // for (var x in numbers) {
+  //   sum += x;
+  //   // sum = sum + x;
+  // }
+  // print(sum);
+
+  // print(numbers.reduce((prev, i) => prev + i));
+
+  // print(
+  //   numbers.take(10).map((n) => n * 2).toList(),
+  // );
+
+  // print(numbers.any((n) => n % 2 == 0));
+
+  // print(numbers.every((n) => n % 2 == 0));
+
+  // print(
+  //   numbers.where((n) => n % 2 == 0).toList(),
+  // );
+
+  // print(numbers.take(10).toList());
+
+  // print(
+  //   numbers
+  //       .takeWhile(
+  //         (n) => n < 10,
+  //       )
+  //       .toList(),
+  // );
+
+  // print(numbers.first);
+  // print(numbers.last);
+
+  // print(numbers.skip(4).toList());
+
+  // numbers.forEach(
+  //   (n) => print(n),
+  // );
+
+  // for (var n in numbers) {
+  //   print(n);
+  // }
+  // var list = numbers.toList();
+  // var s = numbers.toSet();
+  // var str = numbers.toString();
+
+  // print(list);
+  // print(s);
+  // print(str);
+}
 
 // void main() {
-//   print("Hi");
-//   print("From Dart!");
-// }
+//   List<int> x = [1, 2, 3, 4];
 
-// void main() {
-//   var x = -10;
+//   print(x[0]);
 
-//   print(x.abs());
-// }
-
-// void main() {
-// Numbers - (int, double) num
-// Strings - "Hello!" (single and double quotes)
-// Booleans - true or false
-// Lists - collections of items (like arrays) List<int> 0 indexed
-// Maps - Collections with associated Key Value Pairs Map<String, int>
-// runes - unicode character points
-// symbols - #symbol (simbolic metadata)
-
-//   int x = 10;
-//   double y = 10.0;
-
-//   String s = "${x + y}";
-//   print(s);
-//   bool b = true;
-//   print(b);
-//   List l = [1, 2, 3];
-//   print(l[0]);
-//   List<String> ls = ["1", "2", "3"];
-//   print(ls[1]);
-
-//   Map<String, int> map = {
-//     'A': 10,
-//     'B': 20,
-//     'C': 30,
-//   };
-
-//   print(map["A"]);
-// }
-
-// int add(int a, int b) {
-//   return a + b;
-// }
-// Type based function
-// add(a, b) {
-//   return a + b;
-// }
-// No types
-
-// void main() {
-//   print(add(1, 2));
-//   print(add(20.0, 40.0));
-//   print(add("a", "b"));
-//   print(add(true, false));
-// }
-
-// int add(int a, int b) {
-//   return a + b;
-// }
-
-// Function fun;
-
-// void main() {
-//   fun = add;
-
-//   var result = fun(20, 30);
-
-//   print("Result is $result");
-// }
-
-// int add(int a, int b) {
-//   return a + b;
-// }
-
-// exec(Function op, x, y) {
-//   return op(x, y);
-// }
-
-// void main() {
-//   var result = exec(add, 20, 30);
-//   print("Result is $result");
-// }
-
-// int add(int x, int y) => x + y;
-// int sub(int x, int y) => x + y;
-
-// choose(bool op) {
-//   if (op == true) {
-//     return add;
-//   } else {
-//     return sub;
+//   for (int i in x) {
+//     print(i);
 //   }
-// }
 
-// void main() {
-//   var result = choose(true)(10, 20);
-//   print("Result is $result");
-// }
-
-// int add(int x, int y) => x + y;
-// int sub(int x, int y) => x + y;
-
-// List<Function> operators = [add, sub];
-
-// void main() {
-//   var result = operators[1](10, 20);
-//   print("Result is $result");
-// }
-
-// calc(int b) {
-//   int c = 1;
-
-//   return () => print("The value is ${b + c++}");
-// }
-
-// void main() {
-//   (a, b) {
-//     print("Hello, from closure: ${a + b}");
-//   }(20, 30.0);
-
-//   var f = calc(10);
-//   f();
-//   calc(10)();
-//   f();
-//   f();
+//   for (int i = 0; i < x.length; i++) {
+//     print(x[i]);
+//   }
 // }
