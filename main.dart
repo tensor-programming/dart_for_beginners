@@ -1,131 +1,189 @@
-// void main() {
-//   print("Hello, World");
-// }
+// import 'dart:io';
 
 // void main() {
-//   print("Hi");
-//   print("From Dart!");
+//   PrintItems<int> printItemsInt = PrintItems(10, 50, Status.stopped);
+//   printItemsInt.prints();
+
+//   PrintItems<String> printItemsString =
+//       PrintItems(20, "Hi there!", Status.running);
+//   printItemsString.prints();
+
+//   PrintItems<PrintItems> printItems =
+//       PrintItems(2, printItemsInt, Status.stopped);
+//   printItems.prints();
 // }
 
-// void main() {
-//   var x = -10;
+// class PrintItems<T> {
+//   int times;
+//   T printedItem;
+//   Status status;
 
-//   print(x.abs());
+//   PrintItems(this.times, this.printedItem, this.status);
+
+//   void prints() {
+//     if (status.index == 1) {
+//       for (int i = 0; i < times; i++) {
+//         print(printedItem);
+//       }
+//     } else {
+//       print("Item Stopped: ${status} ${status.index}");
+//     }
+//   }
 // }
 
-// void main() {
-// Numbers - (int, double) num
-// Strings - "Hello!" (single and double quotes)
-// Booleans - true or false
-// Lists - collections of items (like arrays) List<int> 0 indexed
-// Maps - Collections with associated Key Value Pairs Map<String, int>
-// runes - unicode character points
-// symbols - #symbol (simbolic metadata)
-
-//   int x = 10;
-//   double y = 10.0;
-
-//   String s = "${x + y}";
-//   print(s);
-//   bool b = true;
-//   print(b);
-//   List l = [1, 2, 3];
-//   print(l[0]);
-//   List<String> ls = ["1", "2", "3"];
-//   print(ls[1]);
-
-//   Map<String, int> map = {
-//     'A': 10,
-//     'B': 20,
-//     'C': 30,
-//   };
-
-//   print(map["A"]);
-// }
-
-// int add(int a, int b) {
-//   return a + b;
-// }
-// Type based function
-// add(a, b) {
-//   return a + b;
-// }
-// No types
-
-// void main() {
-//   print(add(1, 2));
-//   print(add(20.0, 40.0));
-//   print(add("a", "b"));
-//   print(add(true, false));
-// }
-
-// int add(int a, int b) {
-//   return a + b;
-// }
-
-// Function fun;
-
-// void main() {
-//   fun = add;
-
-//   var result = fun(20, 30);
-
-//   print("Result is $result");
-// }
-
-// int add(int a, int b) {
-//   return a + b;
-// }
-
-// exec(Function op, x, y) {
-//   return op(x, y);
+// enum Status {
+//   stopped,
+//   running,
 // }
 
 // void main() {
-//   var result = exec(add, 20, 30);
-//   print("Result is $result");
+//   int index;
+//   List<String> names = ["John", "Jackie", "Jerry", "Sarah"];
+//   String input;
+
+//   print("Enter an index: ");
+//   input = stdin.readLineSync();
+//   try {
+//     index = int.parse(input);
+//     print(names[index]);
+//   } on FormatException {
+//     print("Could not parse the input!");
+//   } on RangeError {
+//     print("int out of range of index");
+//   } finally {
+//     print("You selected $index out of ${names.length}");
+//   }
+
 // }
 
-// int add(int x, int y) => x + y;
-// int sub(int x, int y) => x + y;
+// class AgeException implements Exception {
+//   String message;
+//   AgeException(this.message);
 
-// choose(bool op) {
-//   if (op == true) {
-//     return add;
-//   } else {
-//     return sub;
+//   @override
+//   String toString() {
+//     return message;
+//   }
+// }
+
+// class BannedPerson implements Exception {
+//   @override
+//   String toString() {
+//     return "That person was banned from the Bar!";
+//   }
+// }
+
+// class Person {
+//   String name;
+//   int age;
+//   Person(this.name, this.age);
+//   @override
+//   String toString() {
+//     return name;
+//   }
+// }
+
+// class Pub {
+//   List<Person> patrons = List();
+
+//   void checkAge(Person p) {
+//     if (p.age < 18) {
+//       throw AgeException("User is under age!");
+//     }
+//     if (p.name == "Jacky") {
+//       throw BannedPerson();
+//     } else {
+//       patrons.add(p);
+//     }
 //   }
 // }
 
 // void main() {
-//   var result = choose(true)(10, 20);
-//   print("Result is $result");
+//   Pub checkPerson = Pub();
+
+//   try {
+//     checkPerson.checkAge(Person("Jimmy", 40));
+//     checkPerson.checkAge(Person("Jacky", 23));
+//     checkPerson.checkAge(Person("Jonny", 12));
+//   } catch (e) {
+//     print(e);
+//   }
+
+//   print(checkPerson.patrons);
 // }
 
-// int add(int x, int y) => x + y;
-// int sub(int x, int y) => x + y;
+// class Animal {
+//   String type;
 
-// List<Function> operators = [add, sub];
+//   factory Animal(String type) {
+//     if (type == "cat") {
+//       return Cat(type);
+//     } else if (type == "dog") {
+//       return Dog(type);
+//     } else {
+//       throw AnimalException(type);
+//     }
+//   }
+
+//   Animal._type(this.type);
+// }
+
+// class AnimalException implements Exception {
+//   AnimalException(this.type);
+
+//   String type;
+//   @override
+//   String toString() {
+//     return "$type is not a valid type";
+//   }
+// }
+
+// class Cat extends Animal {
+//   Cat(String type) : super._type(type);
+
+//   @override
+//   String toString() {
+//     return type;
+//   }
+// }
+
+// class Dog extends Animal {
+//   Dog(String type) : super._type(type);
+
+//   @override
+//   String toString() {
+//     return type;
+//   }
+// }
+
+// class Item {
+//   static Item item;
+//   String state;
+
+//   factory Item(String state) {
+//     if (Item.item == null) {
+//       Item.item = Item._internal()..state = state;
+//     }
+//     return Item.item..state = state;
+//   }
+
+//   Item._internal();
+// }
 
 // void main() {
-//   var result = operators[1](10, 20);
-//   print("Result is $result");
-// }
+//   try {
+//     Animal a = Animal("dog");
+//     print(a);
+//   } catch (e) {
+//     print(e);
+//   }
 
-// calc(int b) {
-//   int c = 1;
+//   Item item = Item("Some State");
+//   print(item.state);
+//   Item item2 = Item("Some other State");
+//   Item item3 = Item("different state");
 
-//   return () => print("The value is ${b + c++}");
-// }
-
-// void main() {
-//   (a, b) {
-//     print("Hello, from closure: ${a + b}");
-//   }(20, 30.0);
-
-//   var f = calc(10);
-//   f();
-//   calc(10)();
-//   f();
-//   f();
+//   print(item.state);
+//   print(item2.state);
+//   print(item3.state);
 // }
