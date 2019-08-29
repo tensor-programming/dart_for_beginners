@@ -96,10 +96,12 @@ class Quaternion extends Complex {
   String toString() {
     if (this.jImage >= 0 && this._imaginary >= 0) {
       return '${this._real} + ${this.imaginary}i + ${this.jImage}j';
-    }
+    } 
     if (this.jImage >= 0 && this._imaginary < 0) {
-      return '${this._real} - ${this.imaginary.abs()}i + ${this.jImage}j';
+      return '${this._real} - ${this.imaginary.abs()}i + ${this.jImage.abs()}j';
+    } 
+    if (this.jImage < 0 && this._imaginary >= 0) {
+      return '${this._real} + ${this.imaginary.abs()}i - ${this.jImage.abs()}';
     }
     return '${this._real} - ${this.imaginary.abs()}i - ${this.jImage.abs()}j';
-  }
 }
