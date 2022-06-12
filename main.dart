@@ -22,10 +22,10 @@ class Complex {
   // static const x = 10;
   // static num counter = 0;
 
-  get real => _real;
+  num get real => _real;
   set real(num value) => _real = value;
 
-  get imaginary => _imaginary;
+  num get imaginary => _imaginary;
   set imaginary(num value) => _imaginary = value;
 
   Complex(this._real, this._imaginary);
